@@ -1,3 +1,7 @@
+<?php
+require_once "content.php";
+require_once "include/functions.php"
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,9 +18,9 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="index.html">Teletubbies</a></li>
-                <li><a href="kittens.html">Kittens</a></li>
-                <li><a href="ironmaiden.html">Iron Maiden</a></li>
+                <?php foreach ($content as $value){
+                    addActive($value['url'], $value['title']);
+                }?>
             </ul>
         </div>
     </div>
