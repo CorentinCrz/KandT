@@ -2,7 +2,7 @@
 function addActive($url, $title)
 {
     $class='';
-    if ($url === $_SERVER[""]) {
+    if ('p='.$url === $_SERVER["QUERY_STRING"]) {
         $class=' class="active"';
     }
     ?>
