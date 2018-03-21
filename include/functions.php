@@ -6,6 +6,6 @@ function addActive($url, $title)
         $class=' class="active"';
     }
     ?>
-    <li <?=$class?>><a href="<?='index?p='.$url?>"><?=$title?></a></li>
+    <li <?=$class?>><a href="<?='?p='.$url?>"><?=$title?></a></li>
     <?php
 }

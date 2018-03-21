@@ -1,5 +1,4 @@
 <?php
-include "include/header.php";
 require_once "content.php";
 // definition de la page par defaut
 define('APP_DEFAUT_PAGE', 'teletubbies');
@@ -22,6 +21,7 @@ if (isset($content[$_GET[APP_PAGE_PARAM]])) {
     $currentPage = APP_DEFAUT_PAGE;
     $page = &$content[$currentPage];
 }
+include "include/header.php";
 ?>
     <div class="container theme-showcase" role="main">
         <div class="jumbotron">

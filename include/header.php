@@ -1,5 +1,4 @@
 <?php
-require_once "content.php";
 require_once "include/functions.php"
 ?>
 <!DOCTYPE html>
@@ -18,8 +17,8 @@ require_once "include/functions.php"
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <?php foreach ($content as $value){
-                    addActive($value['url'], $value['title']);
+                <?php foreach ($content as $id => $value){
+                    addActive($id, $value['title']);
                 }?>
             </ul>
         </div>
