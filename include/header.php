@@ -18,8 +18,9 @@ require_once "include/functions.php"
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 <?php foreach ($content as $id => $value){
-                    addActive($id, $value['title']);
+                    addActive($id, $value['title'], $currentPage);
                 }?>
+                <a class="navbar-brand" href="crud">CRUD</a>
             </ul>
         </div>
     </div>

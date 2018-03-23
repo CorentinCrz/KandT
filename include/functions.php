@@ -1,11 +1,11 @@
 <?php
-function addActive($url, $title)
+function addActive($url, $title, $currentPage)
 {
     $class='';
-    if ('p='.$url === $_SERVER["QUERY_STRING"]) {
+    if ($url === $currentPage) {
         $class=' class="active"';
     }
     ?>
-    <li <?=$class?>><a href="<?='?p='.$url?>"><?=$title?></a></li>
+    <li <?=$class?>><a href="<?='?'.APP_PAGE_PARAM.'='.$url?>"><?=$title?></a></li>
     <?php
 }
