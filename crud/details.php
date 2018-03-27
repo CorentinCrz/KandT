@@ -5,7 +5,6 @@ if (!isset($_GET['id'])) {
 }
 require_once "../connexion.php";
 $requete = "SELECT 
-    `url`,
     `slug`,
     `title`,
     `h1`,
@@ -43,8 +42,8 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
     <?=$row['nav-title']?> </br>
 </p>
 <ul>
-    <li><a href="delete.php?id=<?=$row['id']?>">Supprimer</a></li>
-    <li><a href="edit.php?id=<?=$row['id']?>">Modifier</a></li>
+    <li><a href="delete.php?id=<?=$_GET['id']?>">Supprimer</a></li>
+    <li><a href="edit.php?id=<?=$_GET['id']?>">Modifier</a></li>
 </ul>
 </body>
 </html>

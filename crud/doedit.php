@@ -12,11 +12,11 @@ SET
     `title` = :title,
     `h1` = :h1,
     `p` = :p,
-    `span-class` = :span-class,
-    `span-text` = :span-text,
-    `img-alt` = :img-alt,
-    `img-src` = :img-src,
-    `nav-title` = :nav-title
+    `span-class` = :spanClass,
+    `span-text` = :spanText,
+    `img-alt` = :imgAlt,
+    `img-src` = :imgSrc,
+    `nav-title` = :navTitle
 WHERE 
     id = :id
 ;";
@@ -26,9 +26,10 @@ $stmt->bindValue(':slug', $_POST['slug']);
 $stmt->bindValue(':title', $_POST['title']);
 $stmt->bindValue(':h1', $_POST['h1']);
 $stmt->bindValue(':p', $_POST['p']);
-$stmt->bindValue(':span-class', $_POST['span-class']);
-$stmt->bindValue(':span-text', $_POST['span-text']);
-$stmt->bindValue(':img-alt', $_POST['img-alt']);
-$stmt->bindValue(':img-src', $_POST['img-src']);
+$stmt->bindValue(':spanClass', $_POST['span-class']);
+$stmt->bindValue(':spanText', $_POST['span-text']);
+$stmt->bindValue(':imgAlt', $_POST['img-alt']);
+$stmt->bindValue(':imgSrc', $_POST['img-src']);
+$stmt->bindValue(':navTitle', $_POST['nav-title']);
 $stmt->execute();
-header('Location: ..\index.php?id='.(int)$_POST['id']);
+header('Location: details.php?id='.(int)$_POST['id']);

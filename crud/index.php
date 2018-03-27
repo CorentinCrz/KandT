@@ -49,7 +49,7 @@ if (isset($_GET['error'])) {
         <tr>
             <td><?=$row['id']?></td>
             <td><?=$row['title']?></a></td>
-            <td><?=$row['h1']?></td>
+            <td><?=$row['slug']?></td>
             <td>
                 <a href="\crud\delete.php?id=<?=$row['id']?>">Supprimer</a>
                 <a href="\crud\edit.php?id=<?=$row['id']?>">Modifier</a>
