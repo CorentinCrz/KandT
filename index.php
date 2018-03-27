@@ -1,5 +1,5 @@
 <?php
-require_once "content.php";
+require_once "connexion.php";
 // definition de la page par defaut
 define('APP_DEFAUT_PAGE', 'teletubbies');
 define('APP_PAGE_PARAM', 'p');
@@ -11,25 +11,37 @@ if (isset($_GET[APP_PAGE_PARAM])) {
     // si non, affectation de la page par defaut dans $currentPage
     $currentPage = APP_DEFAUT_PAGE;
 }
+$sql = "SELECT 
+    `slug`,
+    `h1`,
+    `p`,
+    `span-class`,
+    `span-text`,
+    `img-alt`,
+    `img-src`
+FROM 
+    `PAGE`
+WHERE
+    `slug` = :slug
+;";
+$stmt = $conn->prepare($sql);
+$stmt->bindValue(':slug', $currentPage);
+$stmt->execute();
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
 // est-ce que ce $currentPage pointe vers une page qui existe?
-if (isset($content[$_GET[APP_PAGE_PARAM]])) {
-    // si oui, j'affiche la page
-    $page = &$content[$_GET[APP_PAGE_PARAM]];
-} else {
+if (!isset($row['slug'])) {
     // si non, response code 404 et affichage de la page par defaut
     http_response_code(404);
-    $currentPage = APP_DEFAUT_PAGE;
-    $page = &$content[$currentPage];
 }
 include "include/header.php";
 ?>
     <div class="container theme-showcase" role="main">
         <div class="jumbotron">
-            <h1><?=$page['h1']?></h1>
-            <p><?=$page['p']?></p>
-            <span class="label <?=$page['span-class']?>"><?=$page['span-text']?></span>
+            <h1><?=$row['h1']?></h1>
+            <p><?=$row['p']?></p>
+            <span class="label <?=$row['span-class']?>"><?=$row['span-text']?></span>
         </div>
-        <img class="img-thumbnail" alt="<?=$page['img-alt']?>" src="img/<?=$page['img-src']?>" data-holder-rendered="true">
+        <img class="img-thumbnail" alt="<?=$row['img-alt']?>" src="img/<?=$row['img-src']?>" data-holder-rendered="true">
     </div>
 <?php
 include "include/footer.php";
