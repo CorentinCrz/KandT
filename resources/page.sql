@@ -51,7 +51,7 @@ VALUES
   (
     'teletubbies',
     'Teletubbies',
-    'teletubbies',
+    'test',
     'Teletubbies',
     'danger',
     'artung',
