@@ -1,85 +1,70 @@
--- creation de la table
+-- Création de la table
 DROP TABLE IF EXISTS `page`;
-CREATE TABLE `PAGE` (
-  `id` INT UNSIGNED AUTO_INCREMENT,
-  `slug` VARCHAR(120) NOT NULL,
-  `title` VARCHAR(110) NOT NULL,
-  `h1` VARCHAR(60) NOT NULL,
-  `p` VARCHAR(3000) NOT NULL,
-  `span-class` VARCHAR(50) NOT NULL,
-  `span-text` VARCHAR(100) NOT NULL,
-  `img-alt` VARCHAR(100) NOT NULL,
-  `img-src` VARCHAR(2048) NOT NULL,
-  `nav-title` VARCHAR(25) NOT NULL,
+CREATE TABLE IF NOT EXISTS `page` (
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `slug` varchar(120) NOT NULL,
+  `title` varchar(110) NOT NULL,
+  `h1` varchar(60) NOT NULL,
+  `p` varchar(3000) NOT NULL,
+  `span-class` varchar(50) NOT NULL,
+  `span-text` varchar(100) NOT NULL,
+  `img-alt` varchar(100) NOT NULL,
+  `img-src` varchar(2048) NOT NULL,
+  `nav-title` varchar(30) NOT NULL,
   PRIMARY KEY (`id`)
-);
-
--- generation de la nav
-SELECT
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+-- Insertion
+INSERT INTO `page`(
   `slug`,
-  `nav-title`
-FROM
-  `PAGE`
-;
--- affichage page teletubbies
-SELECT
+  `title`,
   `h1`,
   `p`,
   `span-class`,
   `span-text`,
   `img-alt`,
-  `img-src`
-FROM
-  `PAGE`
-WHERE
-  `slug` = 'teletubbies'
+  `img-src`,
+  `nav-title`
+)
+VALUES(
+  'teletubbies',
+  'teletubbies',
+  'Teletubbies',
+  'Ca fait peur',
+  'label-danger',
+  'artung die',
+  'Eloignez-les enfants',
+  'teletubbies.jpg',
+  'Teletubbies'
+)
 ;
--- creation page teletubbies
-INSERT INTO
-  `PAGE`
-  (
-    `slug`,
-    `title`,
-    `h1`,
-    `p`,
-    `span-class`,
-    `span-text`,
-    `img-alt`,
-    `img-src`,
-    `nav-title`
-  )
-VALUES
-  (
-    'teletubbies',
-    'Teletubbies',
-    'test',
-    'Teletubbies',
-    'danger',
-    'artung',
-    'teletubbies',
-    'teletubbies.jpg',
-    'Teletubbies'
-  )
-;
--- mise a jour
+INSERT INTO `page` SET
+  `slug`= 'teletubbies',
+  `title` = 'teletubbies',
+  `h1` = 'Teletubbies',
+  `p` = 'Ca fait peur',
+  `span-class` = 'label-danger',
+  `span-text` = 'artung die',
+  `img-alt` = 'Eloignez-les enfants',
+  `img-src`= 'teletubbies.jpg',
+  `nav-title` = 'Teletubbies';
+-- Mise à jour
 UPDATE
-  `PAGE`
+  `page`
 SET
-  `slug` = 'chatons',
-  `title` = 'chatons',
-  `h1` = 'chatons',
-  `p` = 'chatons',
-  `span-class` = 'success',
-  `span-text` = 'chatons',
-  `img-alt` = 'chatons',
-  `img-src` = 'three_kittens.jpg',
-  `nav-title` = 'chatons'
+  `slug`= 'chatonteletubbies',
+  `title` = 'chatonteletubbies',
+  `h1` = 'chatonTeletubbies',
+  `p` = 'Ca fait peur',
+  `span-class` = 'label-success',
+  `span-text` = 'artung die',
+  `img-alt` = 'chatonEloignez-les enfants',
+  `img-src`= 'chatonchaton.jpg',
+  `nav-title` = 'chatonTeletubbies'
 WHERE
-  id = 1
-;
--- suppression
-DELETE FROM
-  `PAGE`
-WHERE
-  id = 1
-;
+`id` = 1;
+-- Michael Jackson
+DELETE FROM `page` WHERE `id` = 2;
+-- géneration de la nav
+SELECT `slug`, `nav-title` FROM `page`;
+-- Affichage de la page Teletubbies
+SELECT `h1`, `p`, `span-class`, `span-text`, `img-alt`, `img-src` FROM `page` WHERE `slug` = 'teletubbies';
