@@ -12,7 +12,6 @@ if (isset($_GET[APP_PAGE_PARAM])) {
     $currentPage = APP_DEFAUT_PAGE;
 }
 $sql = "SELECT 
-    `slug`,
     `h1`,
     `p`,
     `span-class`,

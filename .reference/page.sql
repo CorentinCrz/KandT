@@ -1,15 +1,16 @@
 -- creation de la table
-CREATE TABLE `KandT`.`PAGE` (
+DROP TABLE IF EXISTS `page`;
+CREATE TABLE `PAGE` (
   `id` INT UNSIGNED AUTO_INCREMENT,
-  `slug` VARCHAR(120),
-  `title` VARCHAR(110),
-  `h1` VARCHAR(60),
-  `p` VARCHAR(3000),
-  `span-class` VARCHAR(50),
-  `span-text` VARCHAR(100),
-  `img-alt` VARCHAR(100),
-  `img-src` VARCHAR(2048),
-  `nav-title` VARCHAR(25),
+  `slug` VARCHAR(120) NOT NULL,
+  `title` VARCHAR(110) NOT NULL,
+  `h1` VARCHAR(60) NOT NULL,
+  `p` VARCHAR(3000) NOT NULL,
+  `span-class` VARCHAR(50) NOT NULL,
+  `span-text` VARCHAR(100) NOT NULL,
+  `img-alt` VARCHAR(100) NOT NULL,
+  `img-src` VARCHAR(2048) NOT NULL,
+  `nav-title` VARCHAR(25) NOT NULL,
   PRIMARY KEY (`id`)
 );
 
