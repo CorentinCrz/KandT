@@ -123,6 +123,7 @@ function getHeader($pdo, $currentPage): void
         addActive($onePage['slug'], $onePage['nav-title'], $currentPage);
     }
 ?>
+    <li><a href="crud">CRUD</a></li>
 </ul>
 </div>
 </div>
