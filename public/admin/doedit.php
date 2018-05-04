@@ -3,7 +3,7 @@ if (!isset($_POST['id'])){
     header('Location: index.php?error=nopostdataedit');
     exit;
 }
-require_once "..\connexion.php";
+require_once "../../includes/connection.php";
 $requete = "UPDATE 
     `PAGE` 
 SET 
@@ -20,7 +20,7 @@ SET
 WHERE 
     id = :id
 ;";
-$stmt = $conn->prepare($requete);
+$stmt = $pdo->prepare($requete);
 $stmt->bindValue(':id', (int)$_POST['id']);
 $stmt->bindValue(':slug', $_POST['slug']);
 $stmt->bindValue(':title', $_POST['title']);
@@ -32,4 +32,4 @@ $stmt->bindValue(':imgAlt', $_POST['img-alt']);
 $stmt->bindValue(':imgSrc', $_POST['img-src']);
 $stmt->bindValue(':navTitle', $_POST['nav-title']);
 $stmt->execute();
-header('Location: details.php?id='.(int)$_POST['id']);
+header('Location: show.php?id='.(int)$_POST['id']);

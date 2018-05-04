@@ -3,7 +3,7 @@ if (!isset($_GET['id'])) {
     header('Location: index.php?error=noidprovideddetails');
     exit;
 }
-require_once "../connexion.php";
+require_once "../../includes/connection.php";
 $requete = "SELECT 
     `slug`,
     `title`,
@@ -19,18 +19,13 @@ FROM
 WHERE
     `id` = :id
 ;";
-$stmt = $conn->prepare($requete);
+$stmt = $pdo->prepare($requete);
 $stmt->bindValue(':id', $_GET['id']);
 $stmt->execute();
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
+require_once "../../includes/functions.php";
+crudHead("Details de " . $row['title']);
 ?>
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Details de <?=$row['title']?></title>
-</head>
-<body>
 <h1><?=$row['title']?></h1>
 <h2><?=$row['h1']?></h2>
 <p>

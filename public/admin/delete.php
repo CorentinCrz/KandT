@@ -3,7 +3,7 @@ if (!isset($_GET['id'])) {
     header('Location: index.php?error=noidprovideddelete');
     exit;
 }
-require_once "..\connexion.php";
+require_once "../../includes/connection.php";
 $requete = "SELECT 
     `id`,
     `slug`,
@@ -20,18 +20,13 @@ FROM
 WHERE
     `id` = :id
 ;";
-$stmt = $conn->prepare($requete);
+$stmt = $pdo->prepare($requete);
 $stmt->bindValue(':id', $_GET['id']);
 $stmt->execute();
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
+require_once "../../includes/functions.php";
+crudHead("T'es sur?");
 ?>
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>T'es sur?</title>
-</head>
-<body>
 <form action="dodelete.php" method="post">
     <input type="hidden" name="id" value="<?=$row['id']?>">
     <label for="">T'es sur de vouloir supprimer <?=$row['title']?></label><br>

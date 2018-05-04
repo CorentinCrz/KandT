@@ -3,7 +3,7 @@ if (!isset($_GET['id'])) {
     header('Location: index.php?error=noidprovidededit');
     exit;
 }
-require_once "..\connexion.php";
+require_once "../../includes/connection.php";
 $requete = "SELECT 
     `id`,
     `slug`,
@@ -20,20 +20,15 @@ FROM
 WHERE
     `id` = :id
 ;";
-$stmt = $conn->prepare($requete);
+$stmt = $pdo->prepare($requete);
 $stmt->bindValue(':id', $_GET['id']);
 $stmt->execute();
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
+require_once "../../includes/functions.php";
+crudHead('Modifier une page');
 ?>
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Modifier une page</title>
-</head>
-<body>
 <form action="doedit.php" method="post">
-    <input type="hidden" name="id" value="<?=$_GET['id']?>>
+    <input type="hidden" name="id" value="<?=$row['id']?>>
     <label for="slug">slug</label> <input type="text" name="slug" value="<?=$row['slug']?>"><br>
     <label for="title">title</label> <input type="text" name="title" value="<?=$row['title']?>"><br>
     <label for="h1">h1</label> <input type="text" name="h1" value="<?=$row['h1']?>"><br>

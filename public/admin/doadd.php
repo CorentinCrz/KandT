@@ -3,7 +3,7 @@ if (!isset($_POST['title']) || !isset($_POST['slug']) ) {
     header('Location: index.php?nopostdata');
     exit;
 }
-require_once "..\connexion.php";
+require_once "../../includes/connection.php";
 $sql = "INSERT INTO
   `PAGE`
   (
@@ -30,7 +30,7 @@ VALUES
     :navTitle
   )
 ;";
-$stmt = $conn->prepare($sql);
+$stmt = $pdo->prepare($sql);
 $stmt->bindValue(':slug', $_POST['slug']);
 $stmt->bindValue(':title', $_POST['title']);
 $stmt->bindValue(':h1', $_POST['h1']);
@@ -41,4 +41,4 @@ $stmt->bindValue(':imgAlt', $_POST['img-alt']);
 $stmt->bindValue(':imgSrc', $_POST['img-src']);
 $stmt->bindValue(':navTitle', $_POST['nav-title']);
 $stmt->execute();
-header('Location: details.php?id='.$conn->lastInsertId());
+header('Location: show.php?id='.$pdo->lastInsertId());

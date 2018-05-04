@@ -51,6 +51,7 @@ function displayPage(array $page): void
 function getPage(PDO $pdo, string $slug): ?array
 {
     $sql = "SELECT 
+              `title`, 
               `h1`, 
               `p`, 
               `span-class`, 
@@ -98,7 +99,7 @@ function getNav(PDO $pdo): array
  * @param $pdo
  * @param $currentPage
  */
-function getHeader($pdo, $currentPage): void
+function getHeader($pdo, $currentPage, $row): void
 {
     $navData = getNav($pdo);
     ?>
@@ -106,7 +107,7 @@ function getHeader($pdo, $currentPage): void
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title><?= $row['title'] ?></title>
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 </head>
@@ -123,7 +124,7 @@ function getHeader($pdo, $currentPage): void
         addActive($onePage['slug'], $onePage['nav-title'], $currentPage);
     }
 ?>
-    <li><a href="crud">CRUD</a></li>
+    <li><a href="/admin">*totaly secret* ADMIN</a></li>
 </ul>
 </div>
 </div>
@@ -152,4 +153,53 @@ function pdoErrorHandler(PDOStatement $stmt): void
     if ($stmt->errorCode() !== '00000') {
         throw new PDOException($stmt->errorInfo()[2]);
     }
+}
+
+/**
+ * admin
+ *
+ */
+
+/**
+ * header html
+ * @param string $title
+ */
+function crudHead(string $title): void
+{
+    ?>
+    <!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title><?= $title ?></title>
+        <style>
+            td, th {
+                border: 1px solid #128f27;
+            }
+        </style>
+    </head>
+    <body>
+    <header>
+        <h1><a href="/">retour sur KandT</a></h1>
+        <h1><a href="/admin"> retour sur la home de l'admin</a></h1>
+    </header>
+    <?php
+}
+
+/**
+ *
+ */
+function read($pdo): array
+{
+    $requete = "SELECT 
+    `id`,
+    `slug`,
+    `title`
+FROM 
+    `PAGE`
+;";
+    $stmt = $pdo->prepare($requete);
+    $stmt->execute();
 }

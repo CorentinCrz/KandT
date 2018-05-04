@@ -3,13 +3,13 @@ if (!isset($_POST['id'])) {
     header('Location: index.php?error=nopostdatadelete');
     exit;
 }
-require_once "..\connexion.php";
+require_once "../../includes/connection.php";
 $requete = "DELETE FROM 
 `PAGE` 
 WHERE 
 id = :id
 ;";
-$stmt = $conn->prepare($requete);
+$stmt = $pdo->prepare($requete);
 $stmt->bindValue(':id', $_POST['id']);
 $stmt->execute();
 header('Location: index.php');
