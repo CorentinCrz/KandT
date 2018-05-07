@@ -4,41 +4,8 @@ if (!isset($_GET['id'])) {
     exit;
 }
 require_once "../../includes/connection.php";
-$requete = "SELECT 
-    `slug`,
-    `title`,
-    `h1`,
-    `p`,
-    `span-class`,
-    `span-text`,
-    `img-alt`,
-    `img-src`,
-    `nav-title`
-FROM 
-    `PAGE`
-WHERE
-    `id` = :id
-;";
-$stmt = $pdo->prepare($requete);
-$stmt->bindValue(':id', $_GET['id']);
-$stmt->execute();
-$row = $stmt->fetch(PDO::FETCH_ASSOC);
-require_once "../../includes/functions.php";
+require_once "../../includes/functionsAdmin.php";
+$row = sqlShow($pdo);
 crudHead("Details de " . $row['title']);
-?>
-<h1><?=$row['title']?></h1>
-<h2><?=$row['h1']?></h2>
-<p>
-    <?=$row['slug']?> </br>
-    <?=$row['span-class']?> </br>
-    <?=$row['span-text']?> </br>
-    <?=$row['img-alt']?> </br>
-    <?=$row['img-src']?> </br>
-    <?=$row['nav-title']?> </br>
-</p>
-<ul>
-    <li><a href="delete.php?id=<?=$_GET['id']?>">Supprimer</a></li>
-    <li><a href="edit.php?id=<?=$_GET['id']?>">Modifier</a></li>
-</ul>
-</body>
-</html>
+displayShow($row);
+crudFoot();

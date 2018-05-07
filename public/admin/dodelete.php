@@ -4,12 +4,6 @@ if (!isset($_POST['id'])) {
     exit;
 }
 require_once "../../includes/connection.php";
-$requete = "DELETE FROM 
-`PAGE` 
-WHERE 
-id = :id
-;";
-$stmt = $pdo->prepare($requete);
-$stmt->bindValue(':id', $_POST['id']);
-$stmt->execute();
+require_once "../../includes/functionsAdmin.php";
+sqlDodelete($pdo);
 header('Location: index.php');
