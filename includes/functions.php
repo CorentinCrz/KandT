@@ -51,6 +51,7 @@ function displayPage(array $page): void
 function getPage(PDO $pdo, string $slug): ?array
 {
     $sql = "SELECT 
+              `title`, 
               `h1`, 
               `p`, 
               `span-class`, 
@@ -98,7 +99,7 @@ function getNav(PDO $pdo): array
  * @param $pdo
  * @param $currentPage
  */
-function getHeader($pdo, $currentPage): void
+function getHeader($pdo, $currentPage, $row): void
 {
     $navData = getNav($pdo);
     ?>
@@ -106,7 +107,7 @@ function getHeader($pdo, $currentPage): void
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title><?= $row['title'] ?></title>
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
 </head>
@@ -152,3 +153,4 @@ function pdoErrorHandler(PDOStatement $stmt): void
         throw new PDOException($stmt->errorInfo()[2]);
     }
 }
+

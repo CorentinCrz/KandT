@@ -17,7 +17,7 @@ try {
         $currentPage = APP_DEFAUT_PAGE;
         $page = getPage($pdo, $currentPage);
     }
-    getHeader($pdo, $currentPage);
+    getHeader($pdo, $currentPage, $page);
     displayPage($page);
     getFooter();
 } catch(PDOException $PDOException) {
