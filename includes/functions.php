@@ -124,7 +124,6 @@ function getHeader($pdo, $currentPage, $row): void
         addActive($onePage['slug'], $onePage['nav-title'], $currentPage);
     }
 ?>
-    <li><a href="/admin">*totaly secret* ADMIN</a></li>
 </ul>
 </div>
 </div>

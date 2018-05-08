@@ -159,7 +159,7 @@ function displayAdd(): void
         <label for="slug">slug</label> <input type="text" name="slug"><br>
         <label for="title">title</label> <input type="text" name="title"><br>
         <label for="h1">h1</label> <input type="text" name="h1"><br>
-        <label for="p">text</label> <input type="text" name="p"><br>
+        <label for="p">p</label> <input type="text" name="p"><br>
         <label for="span-class">span-class</label> <input type="text" name="span-class"><br>
         <label for="span-text">span-text</label> <input type="text" name="span-text"><br>
         <label for="img-alt">img-alt</label> <input type="text" name="img-alt"><br>
@@ -371,3 +371,4 @@ function sqlDodelete($pdo): void
     $stmt->bindValue(':id', $_POST['id']);
     $stmt->execute();
 }
+
