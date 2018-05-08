@@ -22,7 +22,6 @@ function crudHead(string $title): void
     </head>
     <body>
     <header>
-        <h1><a href="/">retour sur KandT</a></h1>
         <h1><a href="/admin"> retour sur la home de l'admin</a></h1>
     </header>
     <?php
